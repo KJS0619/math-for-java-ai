@@ -21,6 +21,20 @@ public class Vector {
     }
 
     /**
+     * 벡터 뺄셈: a - b
+     */
+    public static double[] subtract(double[] a, double[] b) {
+        if (a.length != b.length) {
+            throw new IllegalArgumentException("벡터 길이가 다릅니다: " + a.length + " vs " + b.length);
+        }
+        double[] result = new double[a.length];
+        for (int i = 0; i < a.length; i++) {
+            result[i] = a[i] - b[i];
+        }
+        return result;
+    }
+
+    /**
      * 스칼라 곱: scalar * v
      */
     public static double[] scale(double[] v, double scalar) {
