@@ -164,6 +164,13 @@ norm = np.linalg.norm(v)
 - **Python 3.11+**: NumPy/PyTorch 실습용
 - **Jupyter Notebook**: 시각화 및 실험용
 
+### 소스 코드 저장소
+
+이 책의 모든 예제 코드는 GitHub에서 확인할 수 있습니다:
+
+- **Vol.1 AI를 위한 수학**: https://github.com/KJS0619/math-for-java-ai
+- **Vol.2 AI를 위한 통계학**: https://github.com/KJS0619/stats-for-java-ai
+
 ### Java 프로젝트 설정
 
 ```xml
