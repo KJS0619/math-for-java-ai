@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI를 위한 수학 - 자바 개발자의 AI 전환 시리즈 Vol.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-secondary: #161b22;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --accent: #58a6ff;
+  --accent-dim: #1f6feb;
+  --success: #3fb950;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.badge {
+  display: inline-block;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #58a6ff 0%, #a371f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chapter-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+.chapter-card:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+.chapter-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 48px;
+}
+.chapter-info { flex: 1; }
+.chapter-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.chapter-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.chapter-arrow {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+.series-link {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.series-link p {
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.series-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.series-link a:hover {
+  text-decoration: underline;
+}
+footer {
+  margin-top: 48px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span class="badge">Vol.1</span>
+    <h1>AI를 위한 수학</h1>
+    <p class="subtitle">자바 개발자가 AI/ML 분야로 전환할 때 필요한 수학적 기초<br>코드로 이해하는 선형대수와 미적분</p>
+  </header>
+
+  <div class="chapters">
+    <a href="chapter.html?ch=0" class="chapter-card">
+      <span class="chapter-num">00</span>
+      <div class="chapter-info">
+        <div class="chapter-title">오리엔테이션</div>
+        <div class="chapter-desc">왜 개발자에게 수학이 필요한가, 학습 방식 안내</div>
+      </div>
+      <span class="chapter-arrow">→</span>
+    </a>
+    <a href="chapter.html?ch=1" class="chapter-card">
+      <span class="chapter-num">01</span>
+      <div class="chapter-info">
+        <div class="chapter-title">스칼라, 벡터, 행렬</div>
+        <div class="chapter-desc">데이터의 그릇 - AI의 기본 자료구조</div>
+      </div>
+      <span class="chapter-arrow">→</span>
+    </a>
+    <a href="chapter.html?ch=2" class="chapter-card">
+      <span class="chapter-num">02</span>
+      <div class="chapter-info">
+        <div class="chapter-title">벡터 연산</div>
+        <div class="chapter-desc">덧셈, 내적, 코사인 유사도 - AI의 기본 동작</div>
+      </div>
+      <span class="chapter-arrow">→</span>
+    </a>
+    <a href="chapter.html?ch=3" class="chapter-card">
+      <span class="chapter-num">03</span>
+      <div class="chapter-info">
+        <div class="chapter-title">행렬 연산</div>
+        <div class="chapter-desc">행렬 곱셈, 전치 - 데이터 변환의 핵심</div>
+      </div>
+      <span class="chapter-arrow">→</span>
+    </a>
+    <a href="chapter.html?ch=4" class="chapter-card">
+      <span class="chapter-num">04</span>
+      <div class="chapter-info">
+        <div class="chapter-title">함수와 그래프</div>
+        <div class="chapter-desc">활성화 함수 - 신경망에 비선형성 추가</div>
+      </div>
+      <span class="chapter-arrow">→</span>
+    </a>
+    <a href="chapter.html?ch=5" class="chapter-card">
+      <span class="chapter-num">05</span>
+      <div class="chapter-info">
+        <div class="chapter-title">미분</div>
+        <div class="chapter-desc">변화를 측정하다 - 역전파의 기초</div>
+      </div>
+      <span class="chapter-arrow">→</span>
+    </a>
+    <a href="chapter.html?ch=6" class="chapter-card">
+      <span class="chapter-num">06</span>
+      <div class="chapter-info">
+        <div class="chapter-title">경사하강법</div>
+        <div class="chapter-desc">AI 학습의 엔진 - SGD, Adam 옵티마이저</div>
+      </div>
+      <span class="chapter-arrow">→</span>
+    </a>
+    <a href="chapter.html?ch=7" class="chapter-card">
+      <span class="chapter-num">07</span>
+      <div class="chapter-info">
+        <div class="chapter-title">손실 함수</div>
+        <div class="chapter-desc">틀린 정도를 측정하다 - MSE, Cross-Entropy</div>
+      </div>
+      <span class="chapter-arrow">→</span>
+    </a>
+    <a href="chapter.html?ch=8" class="chapter-card">
+      <span class="chapter-num">08</span>
+      <div class="chapter-info">
+        <div class="chapter-title">실전: MNIST 분류기</div>
+        <div class="chapter-desc">전체 통합 - 손글씨 숫자 인식 신경망 구현</div>
+      </div>
+      <span class="chapter-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="series-link">
+    <p>자바 개발자의 AI 전환 시리즈</p>
+    <a href="https://stats-for-java-ai.vercel.app" target="_blank">Vol.2 AI를 위한 통계학 →</a>
+  </div>
+
+  <footer>
+    <p>소스 코드: <a href="https://github.com/KJS0619/math-for-java-ai" target="_blank">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>

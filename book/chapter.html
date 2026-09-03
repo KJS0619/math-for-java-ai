@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI를 위한 수학</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$']],
+    displayMath: [['$$', '$$']],
+  },
+  startup: {
+    pageReady: () => {
+      return MathJax.startup.defaultPageReady();
+    }
+  }
+};
+</script>
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --accent: #58a6ff;
+  --accent-dim: #1f6feb;
+  --success: #3fb950;
+  --warning: #d29922;
+  --code-bg: #161b22;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 16px;
+}
+.topbar {
+  position: sticky;
+  top: 0;
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.home-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.home-link:hover { color: var(--accent); }
+.chapter-indicator {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.nav-buttons {
+  display: flex;
+  gap: 8px;
+}
+.nav-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.nav-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 24px 100px;
+}
+.content h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent-dim);
+}
+.content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 48px 0 20px;
+  color: var(--accent);
+}
+.content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 32px 0 16px;
+}
+.content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 24px 0 12px;
+  color: var(--text-muted);
+}
+.content p {
+  margin-bottom: 16px;
+}
+.content ul, .content ol {
+  margin: 16px 0;
+  padding-left: 28px;
+}
+.content li {
+  margin: 8px 0;
+}
+.content blockquote {
+  border-left: 4px solid var(--accent);
+  background: var(--bg-secondary);
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+.content blockquote p {
+  margin: 0;
+}
+.content pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  margin: 20px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+}
+.content p code, .content li code {
+  background: var(--bg-tertiary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  text-align: left;
+}
+.content th {
+  background: var(--bg-secondary);
+  font-weight: 600;
+}
+.content tr:nth-child(even) {
+  background: var(--bg-secondary);
+}
+.content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 40px 0;
+}
+.content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.content a:hover {
+  text-decoration: underline;
+}
+.content img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+.content strong {
+  font-weight: 600;
+  color: #fff;
+}
+.loading {
+  text-align: center;
+  padding: 100px 20px;
+  color: var(--text-muted);
+}
+.error {
+  text-align: center;
+  padding: 100px 20px;
+  color: var(--warning);
+}
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  max-width: 45%;
+  transition: all 0.15s;
+}
+.chapter-nav a:hover {
+  border-color: var(--accent);
+}
+.chapter-nav .label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.chapter-nav .title {
+  font-weight: 500;
+  color: var(--accent);
+}
+@media (max-width: 600px) {
+  .content h1 { font-size: 1.8rem; }
+  .content h2 { font-size: 1.4rem; }
+  .topbar { padding: 10px 16px; }
+  .container { padding: 32px 16px 80px; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="index.html" class="home-link">← 목차</a>
+    <span class="chapter-indicator" id="chapterIndicator">Chapter 0</span>
+  </div>
+  <div class="nav-buttons">
+    <a href="#" class="nav-btn" id="prevBtn">이전</a>
+    <a href="#" class="nav-btn" id="nextBtn">다음</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="content" id="content">
+    <div class="loading">로딩 중...</div>
+  </div>
+  <div class="chapter-nav" id="chapterNav"></div>
+</div>
+
+<script>
+const chapters = [
+  { num: 0, title: '오리엔테이션' },
+  { num: 1, title: '스칼라, 벡터, 행렬' },
+  { num: 2, title: '벡터 연산' },
+  { num: 3, title: '행렬 연산' },
+  { num: 4, title: '함수와 그래프' },
+  { num: 5, title: '미분' },
+  { num: 6, title: '경사하강법' },
+  { num: 7, title: '손실 함수' },
+  { num: 8, title: '실전: MNIST 분류기' }
+];
+
+const params = new URLSearchParams(window.location.search);
+const chapterNum = parseInt(params.get('ch') || '0');
+
+document.getElementById('chapterIndicator').textContent = `Chapter ${chapterNum}`;
+document.title = `${chapters[chapterNum]?.title || ''} - AI를 위한 수학`;
+
+// Navigation
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+if (chapterNum > 0) {
+  prevBtn.href = `chapter.html?ch=${chapterNum - 1}`;
+} else {
+  prevBtn.style.opacity = '0.4';
+  prevBtn.style.pointerEvents = 'none';
+}
+
+if (chapterNum < 8) {
+  nextBtn.href = `chapter.html?ch=${chapterNum + 1}`;
+} else {
+  nextBtn.style.opacity = '0.4';
+  nextBtn.style.pointerEvents = 'none';
+}
+
+// Bottom navigation
+const navHtml = [];
+if (chapterNum > 0) {
+  navHtml.push(`<a href="chapter.html?ch=${chapterNum - 1}">
+    <span class="label">이전 장</span>
+    <span class="title">${chapters[chapterNum - 1].title}</span>
+  </a>`);
+} else {
+  navHtml.push('<div></div>');
+}
+if (chapterNum < 8) {
+  navHtml.push(`<a href="chapter.html?ch=${chapterNum + 1}">
+    <span class="label">다음 장</span>
+    <span class="title">${chapters[chapterNum + 1].title}</span>
+  </a>`);
+}
+document.getElementById('chapterNav').innerHTML = navHtml.join('');
+
+// Load markdown
+fetch(`/lectures/chapter${chapterNum}.md`)
+  .then(res => {
+    if (!res.ok) throw new Error('File not found');
+    return res.text();
+  })
+  .then(md => {
+    document.getElementById('content').innerHTML = marked.parse(md);
+    // Re-render MathJax
+    if (window.MathJax) {
+      MathJax.typesetPromise && MathJax.typesetPromise();
+    }
+  })
+  .catch(err => {
+    document.getElementById('content').innerHTML = `<div class="error">챕터를 불러올 수 없습니다.</div>`;
+  });
+</script>
+</body>
+</html>

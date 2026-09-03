@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/book/index.html" },
+    { "source": "/index.html", "destination": "/book/index.html" },
+    { "source": "/chapter.html", "destination": "/book/chapter.html" }
+  ],
+  "headers": [
+    {
+      "source": "/lectures/(.*)",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+      ]
+    }
+  ]
+}
