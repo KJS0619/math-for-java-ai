@@ -205,6 +205,12 @@ public class HuberLoss implements LossFunction {
 
 ## 7.3 분류를 위한 손실 함수
 
+> **4.3절 복습**: 로그 함수는 작은 확률에 큰 페널티를 부여합니다.
+> - $-\ln(0.9) = 0.105$ (확신있게 맞춤 → 작은 손실)
+> - $-\ln(0.1) = 2.303$ (확신있게 틀림 → 큰 손실)
+>
+> 이 성질을 활용해 분류 손실 함수를 설계합니다.
+
 ### Binary Cross-Entropy
 
 이진 분류(0 또는 1)를 위한 손실 함수입니다.
@@ -331,6 +337,23 @@ double loss = cce.compute(preds, targets);
 ```
 
 ### Softmax + Cross-Entropy 결합
+
+Softmax를 먼저 계산한 후 Cross-Entropy를 적용하면 **수치적 불안정** 문제가 발생할 수 있습니다.
+
+```java
+// 문제 상황
+double[] logits = {1000, 1001, 1002};  // 큰 값들
+
+// Softmax 직접 계산
+double[] exps = {Math.exp(1000), Math.exp(1001), Math.exp(1002)};
+// exp(1000) = Infinity! → 오버플로우
+```
+
+**해결책: Log-Sum-Exp 트릭**
+
+4.3절에서 배운 지수 함수의 성질을 활용합니다:
+- $e^{a-b} = e^a / e^b$ (최대값을 빼서 오버플로우 방지)
+- Softmax와 Cross-Entropy를 하나로 결합하면 $e^x$와 $\ln$이 상쇄되어 안정적
 
 ```java
 public class SoftmaxCrossEntropyLoss {
