@@ -22,8 +22,8 @@
 
 ## 시리즈
 
-- **Vol.1 AI를 위한 수학** (본 책)
-- Vol.2 AI를 위한 통계학
+- **Vol.1 AI를 위한 수학** (본 책) - https://github.com/KJS0619/math-for-java-ai
+- Vol.2 AI를 위한 통계학 - https://github.com/KJS0619/stats-for-java-ai
 
 ## 프로젝트 구조
 
